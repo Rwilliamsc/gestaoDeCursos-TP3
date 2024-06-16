@@ -31,8 +31,14 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public Usuario atualizar(@PathVariable String id, @RequestBody Usuario usuario){
-        return usuarioService.update(id, usuario);
+    public ResponseEntity<?> atualizar(@PathVariable String id, @RequestBody Usuario usuario){
+        try {
+        return ResponseEntity.ok().body(usuarioService.update(id, usuario));
+
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
