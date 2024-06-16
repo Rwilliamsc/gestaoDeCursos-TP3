@@ -1,17 +1,16 @@
 package br.edu.infnet.gestaodecursos.service;
 
 import br.edu.infnet.gestaodecursos.model.Curso;
-import br.edu.infnet.gestaodecursos.repository.AlunoRepository;
+
 import br.edu.infnet.gestaodecursos.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Service
 public class CursoService {
@@ -25,6 +24,11 @@ public class CursoService {
 
     @Cacheable(value = "curso", key = "#id")
     public Optional<Curso> findById(Long id) {
+        return Optional.ofNullable(cursoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Curso não Localizado!")));
+    }
+
+    public Optional<Curso> searchById(Long id) {
         return Optional.ofNullable(cursoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Curso não Localizado!")));
     }
