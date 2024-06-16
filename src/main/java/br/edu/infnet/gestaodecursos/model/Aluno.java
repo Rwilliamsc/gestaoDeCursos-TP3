@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class AlunoModel {
+public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +17,7 @@ public class AlunoModel {
             name = "aluno_curso",
             joinColumns = @JoinColumn(name = "aluno_id"),
             inverseJoinColumns = @JoinColumn(name = "curso_id"))
-    private List<CursoModel> cursoModels;
+    private List<Curso> cursos;
 
     public Long getId() {
         return id;
@@ -43,12 +43,12 @@ public class AlunoModel {
         this.email = email;
     }
 
-    public List<CursoModel> getCursos() {
-        return cursoModels;
+    public List<Curso> getCursos() {
+        return cursos;
     }
 
-    public void setCursos(List<CursoModel> cursoModels) {
-        this.cursoModels = cursoModels;
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
 }

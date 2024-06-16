@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class CursoModel {
+public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +14,7 @@ public class CursoModel {
 
     @ManyToMany(mappedBy = "cursos")
     @JsonBackReference
-    private List<AlunoModel> alunoModels;
+    private List<Aluno> alunos;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class CursoModel {
         this.nome = nome;
     }
 
-    public List<AlunoModel> getAlunos() {
-        return alunoModels;
+    public List<Aluno> getAlunos() {
+        return alunos;
     }
 
-    public void setAlunos(List<AlunoModel> alunoModels) {
-        this.alunoModels = alunoModels;
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 }
